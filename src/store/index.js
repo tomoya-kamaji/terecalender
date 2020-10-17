@@ -6,43 +6,43 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     fields: [
-      { key: 'organization', label: '#' ,variant: 'danger'},
-      { key: 'k', label: '国語' },
-      { key: 's', label: '算数' },
-      { key: 'e', label: '英語' },
-      { key: 'r', label: '理科' },
-      { key: 'sya', label: '社会' },
-    ],
-    items: [
       {
-        organization: '京都ビジネスイノベーション3課',
-        k: '80',
-        s: '70',
-        e: '60',
-        r: '20',
-        sya: '70'
+        name: "a",
+        japanese: 30,
+        mathematics: 40,
+        english: 80,
+        science: 40,
+        history: 20,
+        sum:100, 
+        average:100, 
+        stdev:100, 
       },
-    ]
-
+    ],
   },
   mutations: {
-    addAddress(state, payload){
-      // address.id = id
-      console.log(payload)
-      state.items.pop()
+    updatefields(state, payload){
+      state.fields = payload.fields
+      state.fields[0].sum = 
+        payload.fields.[0].japanese + 
+        payload.fields.[0].mathematics +
+        payload.fields.[0].english +
+        payload.fields.[0].science +
+        payload.fields.[0].history
+      
+      state.fields[0].average = state.fields[0].sum / 5
     },
 
 
   },
   actions: {
-    addAddress(store,payload){
-      store.commit('addAddress' ,payload)
+    updatefields(store,payload){
+      store.commit('updatefields' ,payload)
     },
     
   },
   modules: {
   },
   getters: {
-    getState: (state) => state.items
+    getfields: (state) => state.fields
   }
 })
