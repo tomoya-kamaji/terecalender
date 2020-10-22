@@ -3,11 +3,11 @@
     <template v-slot:default>
       <thead>
         <tr>
-          <th class="text-center" width='11%'>当初計画</th>
-          <th class="text-center" width='11%'>出荷額</th>
-          <th class="text-center" width='11%'>社内売</th>
-          <th class="text-center" width='11%'>社内買</th>
-          <th class="text-center" width='11%'>総生産</th>
+          <th class="text-center" width='11%'>名前</th>
+          <th class="text-center" width='11%'>国語</th>
+          <th class="text-center" width='11%'>数学</th>
+          <th class="text-center" width='11%'>英語</th>
+          <th class="text-center" width='11%'>理科</th>
           <th class="text-center" width='11%'>社会</th>
           <th class="text-center" width='11%'>合計</th>
           <th class="text-center" width='11%'>平均値</th>
@@ -55,7 +55,7 @@
 // import { mapActions } from 'vuex'
 
 export default {
-  name:'Profitability',
+  name:'Study',
     data() {
       return {
         // fields: this.$store.state.fields,

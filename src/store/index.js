@@ -7,19 +7,33 @@ export default new Vuex.Store({
   state: {
     fields: [
       {
-        name: "a",
-        japanese: 30,
+        name: "A",
+        japanese: 70,
         mathematics: 40,
         english: 80,
         science: 40,
         history: 20,
-        sum:100, 
-        average:100, 
-        stdev:100, 
+        sum:0, 
+        average:0, 
+        stdev:0, 
+      },
+      {
+        name: "B",
+        japanese: 30,
+        mathematics: 40,
+        english: 50,
+        science: 40,
+        history: 20,
+        sum:0, 
+        average:0, 
+        stdev:0, 
       },
     ],
   },
   mutations: {
+    insertfields(state, payload){
+      state.fields.push(payload.fields[0])
+    },
     updatefields(state, payload){
       state.fields = payload.fields
       state.fields[0].sum = 
@@ -35,6 +49,9 @@ export default new Vuex.Store({
 
   },
   actions: {
+    insertfields(store,payload){
+      store.commit('insertfields' ,payload)
+    },
     updatefields(store,payload){
       store.commit('updatefields' ,payload)
     },
@@ -43,6 +60,18 @@ export default new Vuex.Store({
   modules: {
   },
   getters: {
-    getfields: (state) => state.fields
+    getfields: function(state){
+      for(let field of state.fields){
+        field.sum = 
+          field.japanese + 
+          field.mathematics +
+          field.english +
+          field.science +
+          field.history
+        field.average = field.sum / 5
+      
+        }
+      return state.fields
+    }
   }
 })
