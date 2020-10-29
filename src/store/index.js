@@ -6,45 +6,90 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     fields: [
-      {
-        name: "A",
-        japanese: 70,
-        mathematics: 40,
-        english: 80,
-        science: 40,
-        history: 20,
-        sum:0, 
-        average:0, 
-        stdev:0, 
-      },
-      {
-        name: "B",
-        japanese: 30,
-        mathematics: 40,
-        english: 50,
-        science: 40,
-        history: 20,
-        sum:0, 
-        average:0, 
-        stdev:0, 
-      },
+      // {
+      //   month: "2020年10月",
+      //   ShipmentValue: 70, //出荷額
+      //   InSales: 40, //社内売
+      //   Inpurchase: 80, //社内買
+      //   Gross: 40, //総生産
+      //   Deduction: 0, //控除額
+      //   PurchaseCost:20, //仕入れ商品費
+      //   Outsourved:10, //外注
+      //   Technicaldispatch:0, //技術派遣
+      //   Rent1:30, //賃借料
+      //   TravelExpenses:0, //旅費交通費
+      //   TechnicalFee:0, //内部技術料
+      //   OperatingFee:0, //営業手数料
+      //   OtherExpenses:0,//その他経費
+      //   DeductedIncome:0,//差引収益
+      //   TotalTime:0,//総時間
+      //   DirectTime:0,//直接時間
+      //   IndirectDepartment:0,//部門内関節時間
+      //   DepartmentTime:0,//部門共通時間
+      //   PerHour:0, // 時間当り
+      //   PretaxProfit:0, //税前利益
+      //   PretaxMargin:0, //税前利益率
+      // },
+      // {
+      //   month: "2020年11月",
+      //   ShipmentValue: 0, //出荷額
+      //   InSales: 0, //社内売
+      //   Inpurchase: 0, //社内買
+      //   Gross: 0, //総生産
+      //   Deduction: 0, //控除額
+      //   PurchaseCost: 0, //仕入れ商品費
+      //   Outsourved: 0, //外注
+      //   Technicaldispatch:0, //技術派遣
+      //   Rent1: 0, //賃借料
+      //   TravelExpenses:0, //旅費交通費
+      //   TechnicalFee:0, //内部技術料
+      //   OperatingFee:0, //営業手数料
+      //   OtherExpenses:0,//その他経費
+      //   DeductedIncome:0,//差引収益
+      //   TotalTime:0,//総時間
+      //   DirectTime:0,//直接時間
+      //   IndirectDepartment:0,//部門内関節時間
+      //   DepartmentTime:0,//部門共通時間
+      //   PerHour:0, // 時間当り
+      //   PretaxProfit:0, //税前利益
+      //   PretaxMargin:0, //税前利益率
+      // },
     ],
   },
   mutations: {
-    insertfields(state, payload){
-      state.fields.push(payload.fields[0])
+    insertfields(state){
+      state.fields.push(
+        {
+          month: "2020年11月",
+          ShipmentValue: 0, //出荷額
+          InSales: 0, //社内売
+          Inpurchase: 0, //社内買
+          Gross: 0, //総生産
+          Deduction: 0, //控除額
+          PurchaseCost:0, //仕入れ商品費
+          Outsourved:0, //外注
+          Technicaldispatch:0, //技術派遣
+          Rent1:0, //賃借料
+          TravelExpenses:0, //旅費交通費
+          TechnicalFee:0, //内部技術料
+          OperatingFee:0, //営業手数料
+          OtherExpenses:0,//その他経費
+          DeductedIncome:0,//差引収益
+          TotalTime:0,//総時間
+          DirectTime:0,//直接時間
+          IndirectDepartment:0,//部門内関節時間
+          DepartmentTime:0,//部門共通時間
+          PerHour:0, // 時間当り
+          PretaxProfit:0, //税前利益
+          PretaxMargin:0, //税前利益率
+        },
+
+      )
     },
-    updatefields(state, payload){
-      state.fields = payload.fields
-      state.fields[0].sum = 
-        payload.fields.[0].japanese + 
-        payload.fields.[0].mathematics +
-        payload.fields.[0].english +
-        payload.fields.[0].science +
-        payload.fields.[0].history
-      
-      state.fields[0].average = state.fields[0].sum / 5
-    },
+    // updatefields(state, payload){
+    
+
+    // },
 
 
   },
@@ -61,16 +106,34 @@ export default new Vuex.Store({
   },
   getters: {
     getfields: function(state){
+      console.log(state)
       for(let field of state.fields){
-        field.sum = 
-          field.japanese + 
-          field.mathematics +
-          field.english +
-          field.science +
-          field.history
-        field.average = field.sum / 5
-      
+        console.log("回数")
+
+        field.Gross =
+          field.ShipmentValue + 
+          field.InSales + 
+          field.Inpurchase
+          
+        field.Deduction =
+          field.PurchaseCost + 
+          field.Outsourved + 
+          field.Technicaldispatch +
+          field.Rent1 +
+          field.OperatingFee +
+          field.OtherExpenses
+        
+        field.TotalTime =
+          field.DirectTime + 
+          field.IndirectDepartment +
+          field.DepartmentTime
+          
+        field.DeductedIncome =
+          field.Gross - 
+          field.Deduction
+
         }
+
       return state.fields
     }
   }

@@ -25,7 +25,7 @@
     <v-app-bar color="primary" dark app>
       <!-- アプリケーションバー -->
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>成績表</v-toolbar-title>
+      <v-toolbar-title>プロジェクト採算表</v-toolbar-title>
     </v-app-bar>
 
     <v-content>
