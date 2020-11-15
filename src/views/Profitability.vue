@@ -100,43 +100,44 @@
 
         <tr>
           <td  class="pa-0">京都ビジネスイノベーション3課</td>
-          <td  class="pa-0">test</td>
-          <td  class="pa-0">test</td>
-          <td  class="pa-0">test</td>
-          <td  class="pa-0">test</td>
-          <td  class="pa-0">test</td>
+          <td  class="pa-0" type="number">{{ MonthlyAggregate[0].ShipmentValue }}</td>
+          <td  class="pa-0">{{ MonthlyAggregate[0].InSales }}</td>
+          <td  class="pa-0">{{ MonthlyAggregate[0].Inpurchase }}</td>
+          <td  class="pa-0">{{ MonthlyAggregate[0].Gross }}</td>
+          <td  class="pa-0">{{ MonthlyAggregate[0].Deduction }}</td>
 
 
-          <td  class="pa-0" v-if="isShowkouzyo" >test</td>
-          <td  class="pa-0" v-if="isShowkouzyo" >test</td>
-          <td  class="pa-0" v-if="isShowkouzyo" >test</td>
-          <td  class="pa-0" v-if="isShowkouzyo" >test</td>
-          <td  class="pa-0" v-if="isShowkouzyo" >test</td>
-          <td  class="pa-0" v-if="isShowkouzyo" >test</td>
-          <td  class="pa-0" v-if="isShowkouzyo" >test</td>
-          <td  class="pa-0" v-if="isShowkouzyo" >test</td>
-          <td  class="pa-0" v-if="isShowkouzyo" >test</td>
+          <td  class="pa-0" v-if="isShowkouzyo" >{{ MonthlyAggregate[0].PurchaseCost }}</td>
+          <td  class="pa-0" v-if="isShowkouzyo" >{{ MonthlyAggregate[0].Outsourved }}</td>
+          <td  class="pa-0" v-if="isShowkouzyo" >{{ MonthlyAggregate[0].Technicaldispatch }}</td>
+          <td  class="pa-0" v-if="isShowkouzyo" >{{ MonthlyAggregate[0].Rent1 }}</td>
+          <td  class="pa-0" v-if="isShowkouzyo" >{{ MonthlyAggregate[0].TravelExpenses }}</td>
+          <td  class="pa-0" v-if="isShowkouzyo" >{{ MonthlyAggregate[0].TechnicalFee }}</td>
+          <td  class="pa-0" v-if="isShowkouzyo" >{{ MonthlyAggregate[0].OperatingFee }}</td>
+          <td  class="pa-0" v-if="isShowkouzyo" >{{ MonthlyAggregate[0].OtherExpenses }}</td>
+          <td  class="pa-0" v-if="isShowkouzyo" >{{ MonthlyAggregate[0].DeductedIncome }}</td>
 
 
-          <td  class="pa-0">test</td>
-          <td  class="pa-0" v-if="isShowTime">test</td>
-          <td  class="pa-0" v-if="isShowTime">test</td>
-          <td  class="pa-0" v-if="isShowTime">test</td>
+          <td  class="pa-0">{{ MonthlyAggregate[0].TotalTime }}</td>
+          <td  class="pa-0" v-if="isShowTime">{{ MonthlyAggregate[0].DirectTime }}</td>
+          <td  class="pa-0" v-if="isShowTime">{{ MonthlyAggregate[0].IndirectDepartment }}</td>
+          <td  class="pa-0" v-if="isShowTime">{{ MonthlyAggregate[0].DepartmentTime }}</td>
 
 
-          <td  class="pa-0">test</td>
-          <td  class="pa-0">test</td>
-          <td  class="pa-0">test</td>
+          <td  class="pa-0">{{ MonthlyAggregate[0].PerHour }}</td>
+          <td  class="pa-0">{{ MonthlyAggregate[0].PretaxProfit }}</td>
+          <td  class="pa-0">{{ MonthlyAggregate[0].PretaxMargin }}</td>
         </tr>
-      </tbody>
-
+      </tbody>  
       <v-btn class="mx-2" fab dark small color="indigo" @click="insertfields">
-      <v-icon dark>
-        mdi-plus
-      </v-icon>
-    </v-btn>
+        <v-icon dark>
+          mdi-plus
+        </v-icon>
+      </v-btn>
+  
     </template>
   </v-simple-table>
+
 </template>
 
 <script>
@@ -154,9 +155,10 @@ export default {
     },
     computed: {
       fields(){
-        console.log("出力")
-        console.log(this.$store.getters.getfields)
         return this.$store.getters.getfields
+      },
+      MonthlyAggregate(){
+        return this.$store.getters.getMonthlyAggregate
       }
     },
     methods: {
@@ -166,6 +168,7 @@ export default {
       updatefields() {
         this.$store.dispatch('updatefields', { fields: this.fields })
       },
+      
       
     }
   }
